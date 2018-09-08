@@ -6,7 +6,7 @@
 #
 Name     : kdeclarative
 Version  : 5.50.0
-Release  : 3
+Release  : 4
 URL      : https://download.kde.org/stable/frameworks/5.50/kdeclarative-5.50.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.50/kdeclarative-5.50.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.50/kdeclarative-5.50.0.tar.xz.sig
@@ -19,10 +19,25 @@ Requires: kdeclarative-license
 Requires: kdeclarative-locales
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : kbookmarks-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
 BuildRequires : kglobalaccel-dev
+BuildRequires : kguiaddons-dev
+BuildRequires : ki18n-dev
+BuildRequires : kiconthemes-dev
+BuildRequires : kio-dev
+BuildRequires : kitemviews-dev
+BuildRequires : kjobwidgets-dev
+BuildRequires : kpackage-dev
+BuildRequires : kservice-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(epoxy)
 BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : solid-dev
 
 %description
 This import contains KDE extras that are visually similar to Qt Quick Controls.
@@ -80,7 +95,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536429401
+export SOURCE_DATE_EPOCH=1536431800
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -88,7 +103,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1536429401
+export SOURCE_DATE_EPOCH=1536431800
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kdeclarative
 cp COPYING.LIB %{buildroot}/usr/share/doc/kdeclarative/COPYING.LIB
