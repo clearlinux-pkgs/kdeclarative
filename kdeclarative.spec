@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdeclarative
-Version  : 5.51.0
-Release  : 5
-URL      : https://download.kde.org/stable/frameworks/5.51/kdeclarative-5.51.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.51/kdeclarative-5.51.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.51/kdeclarative-5.51.0.tar.xz.sig
+Version  : 5.52.0
+Release  : 6
+URL      : https://download.kde.org/stable/frameworks/5.52/kdeclarative-5.52.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.52/kdeclarative-5.52.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.52/kdeclarative-5.52.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -26,6 +26,14 @@ BuildRequires : qtbase-dev mesa-dev
 
 %description
 This import contains KDE extras that are visually similar to Qt Quick Controls.
+
+%package abi
+Summary: abi components for the kdeclarative package.
+Group: Default
+
+%description abi
+abi components for the kdeclarative package.
+
 
 %package bin
 Summary: bin components for the kdeclarative package.
@@ -73,14 +81,14 @@ locales components for the kdeclarative package.
 
 
 %prep
-%setup -q -n kdeclarative-5.51.0
+%setup -q -n kdeclarative-5.52.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539635942
+export SOURCE_DATE_EPOCH=1541878420
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -88,7 +96,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1539635942
+export SOURCE_DATE_EPOCH=1541878420
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdeclarative
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kdeclarative/COPYING.LIB
@@ -99,6 +107,12 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libKF5CalendarEvents.so.5.52.0.abi
+/usr/share/abi/libKF5Declarative.so.5.52.0.abi
+/usr/share/abi/libKF5QuickAddons.so.5.52.0.abi
 
 %files bin
 %defattr(-,root,root,-)
@@ -148,11 +162,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5CalendarEvents.so.5
-/usr/lib64/libKF5CalendarEvents.so.5.51.0
+/usr/lib64/libKF5CalendarEvents.so.5.52.0
 /usr/lib64/libKF5Declarative.so.5
-/usr/lib64/libKF5Declarative.so.5.51.0
+/usr/lib64/libKF5Declarative.so.5.52.0
 /usr/lib64/libKF5QuickAddons.so.5
-/usr/lib64/libKF5QuickAddons.so.5.51.0
+/usr/lib64/libKF5QuickAddons.so.5.52.0
 /usr/lib64/qt5/qml/org/kde/draganddrop/libdraganddropplugin.so
 /usr/lib64/qt5/qml/org/kde/draganddrop/qmldir
 /usr/lib64/qt5/qml/org/kde/kcm/GridDelegate.qml
