@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdeclarative
-Version  : 5.55.0
-Release  : 11
-URL      : https://download.kde.org/stable/frameworks/5.55/kdeclarative-5.55.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.55/kdeclarative-5.55.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.55/kdeclarative-5.55.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.56.0
+Release  : 12
+URL      : https://download.kde.org/stable/frameworks/5.56/kdeclarative-5.56.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.56/kdeclarative-5.56.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.56/kdeclarative-5.56.0.tar.xz.sig
+Summary  : Provides integration of QML and KDE Frameworks
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: kdeclarative-bin = %{version}-%{release}
@@ -25,7 +25,13 @@ BuildRequires : pkgconfig(epoxy)
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-This import contains KDE extras that are visually similar to Qt Quick Controls.
+# KDeclarative
+Integration of QML and KDE work spaces
+## Introduction
+KDeclarative provides integration of QML and KDE work spaces.
+It's comprises two parts: a library used by the C++ part of your application
+to intergrate QML with KDE Frameworks specific features, and a series of
+QML imports that offer bindings to some of the Frameworks.
 
 %package bin
 Summary: bin components for the kdeclarative package.
@@ -42,6 +48,7 @@ Group: Development
 Requires: kdeclarative-lib = %{version}-%{release}
 Requires: kdeclarative-bin = %{version}-%{release}
 Provides: kdeclarative-devel = %{version}-%{release}
+Requires: kdeclarative = %{version}-%{release}
 
 %description dev
 dev components for the kdeclarative package.
@@ -73,22 +80,23 @@ locales components for the kdeclarative package.
 
 
 %prep
-%setup -q -n kdeclarative-5.55.0
+%setup -q -n kdeclarative-5.56.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549761515
+export SOURCE_DATE_EPOCH=1552168745
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549761515
+export SOURCE_DATE_EPOCH=1552168745
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdeclarative
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kdeclarative/COPYING.LIB
@@ -148,11 +156,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5CalendarEvents.so.5
-/usr/lib64/libKF5CalendarEvents.so.5.55.0
+/usr/lib64/libKF5CalendarEvents.so.5.56.0
 /usr/lib64/libKF5Declarative.so.5
-/usr/lib64/libKF5Declarative.so.5.55.0
+/usr/lib64/libKF5Declarative.so.5.56.0
 /usr/lib64/libKF5QuickAddons.so.5
-/usr/lib64/libKF5QuickAddons.so.5.55.0
+/usr/lib64/libKF5QuickAddons.so.5.56.0
 /usr/lib64/qt5/qml/org/kde/draganddrop/libdraganddropplugin.so
 /usr/lib64/qt5/qml/org/kde/draganddrop/qmldir
 /usr/lib64/qt5/qml/org/kde/kcm/GridDelegate.qml
