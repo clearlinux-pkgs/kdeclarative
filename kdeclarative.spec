@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kdeclarative
-Version  : 5.105.0
-Release  : 59
-URL      : https://download.kde.org/stable/frameworks/5.105/kdeclarative-5.105.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.105/kdeclarative-5.105.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.105/kdeclarative-5.105.0.tar.xz.sig
+Version  : 5.106.0
+Release  : 60
+URL      : https://download.kde.org/stable/frameworks/5.106/kdeclarative-5.106.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.106/kdeclarative-5.106.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.106/kdeclarative-5.106.0.tar.xz.sig
 Summary  : Provides integration of QML and KDE Frameworks
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -86,31 +86,48 @@ locales components for the kdeclarative package.
 
 
 %prep
-%setup -q -n kdeclarative-5.105.0
-cd %{_builddir}/kdeclarative-5.105.0
+%setup -q -n kdeclarative-5.106.0
+cd %{_builddir}/kdeclarative-5.106.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681750468
+export SOURCE_DATE_EPOCH=1684882448
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1681750468
+export SOURCE_DATE_EPOCH=1684882448
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kdeclarative
 cp %{_builddir}/kdeclarative-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kdeclarative/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
@@ -126,20 +143,28 @@ cp %{_builddir}/kdeclarative-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt
 cp %{_builddir}/kdeclarative-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdeclarative/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/kdeclarative-%{version}/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kdeclarative/e458941548e0864907e654fa2e192844ae90fc32 || :
 cp %{_builddir}/kdeclarative-%{version}/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kdeclarative/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
 %find_lang kdeclarative5
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/kpackagelauncherqml
 /usr/bin/kpackagelauncherqml
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKF5CalendarEvents.so
+/V3/usr/lib64/libKF5Declarative.so
+/V3/usr/lib64/libKF5QuickAddons.so
 /usr/include/KF5/KDeclarative/CalendarEvents/CalendarEventsPlugin
 /usr/include/KF5/KDeclarative/KDeclarative/ConfigPropertyMap
 /usr/include/KF5/KDeclarative/KDeclarative/KDeclarative
@@ -183,12 +208,26 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKF5CalendarEvents.so.5
+/V3/usr/lib64/libKF5CalendarEvents.so.5.106.0
+/V3/usr/lib64/libKF5Declarative.so.5
+/V3/usr/lib64/libKF5Declarative.so.5.106.0
+/V3/usr/lib64/libKF5QuickAddons.so.5
+/V3/usr/lib64/libKF5QuickAddons.so.5.106.0
+/V3/usr/lib64/qt5/qml/org/kde/draganddrop/libdraganddropplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/kcm/libkcmcontrolsplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/kconfig/libkconfigplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/kcoreaddons/libkcoreaddonsplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/kio/libkio.so
+/V3/usr/lib64/qt5/qml/org/kde/kquickcontrolsaddons/libkquickcontrolsaddonsplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/kwindowsystem/libkwindowsystem.so
+/V3/usr/lib64/qt5/qml/org/kde/private/kquickcontrols/libkquickcontrolsprivateplugin.so
 /usr/lib64/libKF5CalendarEvents.so.5
-/usr/lib64/libKF5CalendarEvents.so.5.105.0
+/usr/lib64/libKF5CalendarEvents.so.5.106.0
 /usr/lib64/libKF5Declarative.so.5
-/usr/lib64/libKF5Declarative.so.5.105.0
+/usr/lib64/libKF5Declarative.so.5.106.0
 /usr/lib64/libKF5QuickAddons.so.5
-/usr/lib64/libKF5QuickAddons.so.5.105.0
+/usr/lib64/libKF5QuickAddons.so.5.106.0
 /usr/lib64/qt5/qml/org/kde/draganddrop/libdraganddropplugin.so
 /usr/lib64/qt5/qml/org/kde/draganddrop/qmldir
 /usr/lib64/qt5/qml/org/kde/graphicaleffects/Lanczos.qml
