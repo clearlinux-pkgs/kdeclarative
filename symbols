@@ -1,41 +1,8 @@
-libKF6CalendarEvents.so.6:CalendarEvents::ShowEventInterface::~ShowEventInterface()
-libKF6CalendarEvents.so.6:CalendarEvents::ShowEventInterface::~ShowEventInterface()
-libKF6CalendarEvents.so.6:CalendarEvents::ShowEventInterface::~ShowEventInterface()
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::qt_metacall(QMetaObject::Call, int, void**)
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::qt_metacast(char const*)
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::eventRemoved(QString const&)
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::eventModified(CalendarEvents::EventData const&)
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::subLabelReady(QHash<QDate, CalendarEvents::CalendarEventsPlugin::SubLabel> const&)
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::alternateCalendarDateReady(QHash<QDate, QCalendar::YearMonthDay> const&)
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::dataReady(QMultiHash<QDate, CalendarEvents::EventData> const&)
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::CalendarEventsPlugin(QObject*)
 libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::CalendarEventsPlugin(QObject*)
 libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::~CalendarEventsPlugin()
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::~CalendarEventsPlugin()
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::~CalendarEventsPlugin()
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::setIsMinor(bool)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::setIsAllDay(bool)
+libKF6CalendarEvents.so.6:CalendarEvents::EventData::EventData()
 libKF6CalendarEvents.so.6:CalendarEvents::EventData::setEventType(CalendarEvents::EventData::EventType)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::setEventColor(QString const&)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::setDescription(QString const&)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::setEndDateTime(QDateTime const&)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::setStartDateTime(QDateTime const&)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::setUid(QString const&)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::setTitle(QString const&)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::EventData(CalendarEvents::EventData const&)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::EventData()
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::EventData(CalendarEvents::EventData const&)
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::EventData()
+libKF6CalendarEvents.so.6:CalendarEvents::EventData::setIsAllDay(bool)
+libKF6CalendarEvents.so.6:CalendarEvents::EventData::setIsMinor(bool)
 libKF6CalendarEvents.so.6:CalendarEvents::EventData::~EventData()
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::~EventData()
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::operator=(CalendarEvents::EventData const&)
-libKF6CalendarEvents.so.6:CalendarEvents::CalendarEventsPlugin::metaObject() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::eventColor() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::description() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::endDateTime() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::startDateTime() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::uid() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::type() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::title() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::isMinor() const
-libKF6CalendarEvents.so.6:CalendarEvents::EventData::isAllDay() const
+libKF6CalendarEvents.so.6:CalendarEvents::ShowEventInterface::~ShowEventInterface()
